@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#80000000" /> <!-- Set the desired transparency and color, e.g., 50% transparency black -->
+    <corners android:radius="8dp" /> <!-- Adjust the corner radius as needed -->
+    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" /> <!-- Add padding for a margin around the text -->
+    <blur android:radius="8dp" /> <!-- Adjust the blur radius as needed -->
+</shape>
