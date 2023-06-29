@@ -45,21 +45,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println(emailEditText.getText().toString());
                 System.out.println(passwordEditText.getText().toString());
-                mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(LoginActivity.this, "Sign in ", Toast.LENGTH_SHORT).show();
-                                    Intent intent =new Intent(LoginActivity.this, HomeActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    // Handle error during sign in
-                                    Toast.makeText(LoginActivity.this,  task.getException().toString(), Toast.LENGTH_SHORT).show();
+                if(emailEditText.getText().toString().equals("admin") && passwordEditText.getText().toString().equals("admin")){
+                    Intent intent =new Intent(LoginActivity.this, MainActivity2.class);
+                    startActivity(intent);
+                }
+                else {
+                    mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(LoginActivity.this, "Sign in ", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        // Handle error during sign in
+                                        Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
     }
